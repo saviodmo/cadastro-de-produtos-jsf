@@ -27,24 +27,52 @@
 				<div class="form-group">
 					<h:outputLabel for="nome-input"> Nome </h:outputLabel>
 					<h:inputText id="nome-input" class="form-control"
-						value="#{produto.nome}"></h:inputText>
+						value="#{produto.nome}" />
 				</div>
 
 				<div class="form-group">
 					<h:outputLabel for="preco-input"> Preço Unitário </h:outputLabel>
 					<h:inputText id="preco-input" class="form-control"
-						value="#{produto.preco}"></h:inputText>
+						value="#{produto.preco}" />
 				</div>
 
 				<div class="form-group">
 					<h:outputLabel for="categoria-input"> Categoria </h:outputLabel>
 					<h:inputText id="categoria-input" class="form-control"
-						value="#{produto.nome}"></h:inputText>
+						value="#{produto.categoria}" />
 				</div>
 
 				<div>
-					<h:commandButton value="Adicionar" class="btn btn-info"></h:commandButton>
+					<h:commandButton value="Adicionar" class="btn btn-info"
+						action="#{produtos.adicionar(produto)}" />
 				</div>
+
+
+				<h:dataTable value="#{produtos.produtos}" var="prod"
+					class="table table-striped table-hover">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputText value="#{prod.nome}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Preço Unitário</f:facet>
+						<h:outputText value="#{prod.preco}" >
+							<f:convertNumber pattern="R$ #0.00"></f:convertNumber>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputText value="#{prod.categoria}" />
+					</h:column>
+					<h:column>
+						<div>
+							<h:commandButton value="Remover" class="btn btn-danger"
+								action="#{produtos.remover(prod)}" />
+						</div>
+					</h:column>
+				</h:dataTable>
+
+
 			</h:form>
 		</div>
 	</div>
