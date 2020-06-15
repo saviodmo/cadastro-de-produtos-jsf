@@ -23,60 +23,29 @@
 <h:body>
 	<div class="container">
 		<ui:include src="/common/navbar.xhtml" />
-		<h1>Cadastro de Produtos</h1>
+		<h1>Detalhe do Produtos</h1>
 		<div>
 			<h:form>
 				<div class="form-group">
 					<h:outputLabel for="nome-input"> Nome </h:outputLabel>
 					<h:inputText id="nome-input" class="form-control"
-						value="#{produto.nome}" />
+						value="#{produtos.produtoSelecionado.nome}" disabled="true" />
 				</div>
 
 				<div class="form-group">
 					<h:outputLabel for="preco-input"> Preço Unitário </h:outputLabel>
 					<h:inputText id="preco-input" class="form-control"
-						value="#{produto.preco}" />
+						value="#{produtos.produtoSelecionado.preco}" disabled="true" />
 				</div>
 
 				<div class="form-group">
 					<h:outputLabel for="categoria-input"> Categoria </h:outputLabel>
 					<h:inputText id="categoria-input" class="form-control"
-						value="#{produto.categoria}" />
+						value="#{produtos.produtoSelecionado.categoria}" disabled="true" />
 				</div>
-
 				<div>
-					<h:commandButton value="Adicionar" class="btn btn-info"
-						action="#{produtos.adicionar(produto)}" />
+					<h:commandLink class="btn btn-info" action="#{produtos.retornar}">Retornar</h:commandLink>
 				</div>
-
-
-				<h:dataTable value="#{produtos.produtos}" var="prod"
-					class="table table-striped table-hover">
-					<h:column>
-						<f:facet name="header">Nome</f:facet>
-						<h:commandLink action="#{produtos.selecionar(prod)}">
-							<h:outputText value="#{prod.nome}" />
-						</h:commandLink>
-
-					</h:column>
-					<h:column>
-						<f:facet name="header">Preço Unitário</f:facet>
-						<h:outputText value="#{prod.preco}">
-							<f:convertNumber pattern="R$ #0.00"></f:convertNumber>
-						</h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Nome</f:facet>
-						<h:outputText value="#{prod.categoria}" />
-					</h:column>
-					<h:column>
-						<div>
-							<h:commandButton value="Remover" class="btn btn-danger"
-								action="#{produtos.remover(prod)}" />
-						</div>
-					</h:column>
-				</h:dataTable>
-
 
 			</h:form>
 		</div>
